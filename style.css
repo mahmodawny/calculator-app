@@ -35,7 +35,19 @@
     --key-red-shadow: hsl(25, 99%, 27%);
     --text-dark: hsl(60, 10%, 19%);
     --text-light: #fff;
+    
   }
+/* في الثيم الفاتح، نخلي الأزرار أغمق شوية */
+body.light .calc__keys button {
+  background-color: hsl(45, 10%, 80%);
+  color: var(--text-dark);
+  box-shadow: 0 4px hsl(35, 10%, 60%);
+}
+
+body.light .calc__title,body.light .calc__result,body.light .themes__lable {
+  color: var(--text-dark);
+}
+
   
   /* ===== Theme 3 (Modern Purple) ===== */
   body.purple {
