@@ -1,74 +1,180 @@
-/* ========== Reset ========== */
-*{
+/* ========== Reset & Base ========== */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body{
+  }
+  
+  :root {
+    /* ===== Theme 1 (Dark) ===== */
+    --main-bg: hsl(222, 26%, 31%);
+    --toggle-bg: hsl(223, 31%, 20%);
+    --screen-bg: hsl(224, 36%, 15%);
+  
+    --key-bg: hsl(30, 25%, 89%);
+    --key-shadow: hsl(28, 16%, 65%);
+    --key-blue-bg: hsl(225, 21%, 49%);
+    --key-blue-shadow: hsl(224, 28%, 35%);
+    --key-red-bg: hsl(6, 63%, 50%);
+    --key-red-shadow: hsl(6, 70%, 34%);
+  
+    --text-dark: hsl(221, 14%, 31%);
+    --text-light: #fff;
+  }
+  
+  /* ===== Theme 2 (Light) ===== */
+  body.light {
+    --main-bg: hsl(0, 0%, 90%);
+    --toggle-bg: hsl(0, 5%, 81%);
+    --screen-bg: hsl(0, 0%, 93%);
+    --key-bg: hsl(45, 7%, 89%);
+    --key-shadow: hsl(35, 11%, 61%);
+    --key-blue-bg: hsl(185, 42%, 37%);
+    --key-blue-shadow: hsl(185, 58%, 25%);
+    --key-red-bg: hsl(25, 98%, 40%);
+    --key-red-shadow: hsl(25, 99%, 27%);
+    --text-dark: hsl(60, 10%, 19%);
+    --text-light: #fff;
+  }
+  
+  /* ===== Theme 3 (Modern Purple) ===== */
+  body.purple {
+    --main-bg: hsl(268, 75%, 9%);
+    --toggle-bg: hsl(268, 71%, 12%);
+    --screen-bg: hsl(268, 71%, 12%);
+    --key-bg: hsl(268, 47%, 21%);
+    --key-shadow: hsl(290, 70%, 36%);
+    --key-blue-bg: hsl(281, 89%, 26%);
+    --key-blue-shadow: hsl(285, 91%, 52%);
+    --key-red-bg: hsl(176, 100%, 44%);
+    --key-red-shadow: hsl(177, 92%, 70%);
+    --text-dark: hsl(52, 100%, 62%);
+    --text-light: #fff;
+  }
+  
+  /* ========== Layout ========== */
+  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: hsl(22, 26%, 31%);
-    color: white;
+    background-color: var(--main-bg);
+    color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-/* ========== Calculator Container ========== */
-.container{
+    transition: 0.3s;
+  }
+  
+  .container {
     width: 350px;
-}
-.calc__header{
-    display:flex;
+  }
+  
+  .calc__header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-}
-.calc__title{
+  }
+  
+  .calc__title {
     font-size: 1.5rem;
-}
-.calc__result{
-    background-color: hsl(224, 36%, 15%);
+  }
+  
+  .calc__result {
+    background-color: var(--screen-bg);
     border-radius: 10px;
     padding: 1.5rem;
     font-size: 2rem;
     text-align: right;
     margin-bottom: 1rem;
     overflow: hidden;
-}
-/* ========== Buttons ========== */
-.calc__keys{
+  }
+  
+  /* ========== Buttons Grid ========== */
+  .calc__keys {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.8rem;
-    background-color: hsl(223, 31%, 20%);
+    background-color: var(--toggle-bg);
     padding: 1rem;
     border-radius: 10px;
-}
-.calc__keys button{
+  }
+  
+  .calc__keys button {
     font-size: 1.2rem;
     padding: 0.8rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: hsl(30, 25%, 89%);
-    color: hsl(221, 14%, 31%);
+    background-color: var(--key-bg);
+    color: var(--text-dark);
     font-weight: bold;
     transition: 0.2s;
-}
-.calc__keys button:hover{
-    opacity: 0.8;
-}
-/* Special keys */
-.key--del,.key--reset {
-  background-color: hsl(225, 21%, 49%);
-  color: #fff;
-}
-.key--equal {
-    background-color: hsl(6, 63%, 50%);
-    color: #fff;
+    box-shadow: 0 4px var(--key-shadow);
+  }
+  
+  .calc__keys button:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* ========== Special Buttons ========== */
+  .key--del,
+  .key--reset {
+    background-color: var(--key-blue-bg);
+    box-shadow: 0 4px var(--key-blue-shadow);
+    color: var(--text-light);
+  }
+  
+  .key--equal {
+    background-color: var(--key-red-bg);
+    box-shadow: 0 4px var(--key-red-shadow);
+    color: var(--text-light);
     grid-column: span 2;
   }
   
   .key--reset {
     grid-column: span 2;
-  }  
+  }
+/* ========== Theme Toggle ========== */
+.themes {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .themes__label {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  
+  .themes__toggle {
+    width: 60px;
+    height: 22px;
+    background-color: var(--toggle-bg);
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .themes__toggle--circle {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--key-red-bg);
+    transition: transform 0.3s ease;
+  }
+  
+  /* لما يتغير الثيم نخلي الدائرة تتحرك */
+  body.light .themes__toggle--circle {
+    transform: translateX(20px);
+    background-color: var(--key-blue-bg);
+  }
+  
+  body.purple .themes__toggle--circle {
+    transform: translateX(40px);
+    background-color: var(--key-red-bg);
+  }
+  
