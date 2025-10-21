@@ -15,3 +15,62 @@ themeToggle.addEventListener("click",()=>{
     document.body.className= themes[currentTheme];
     localStorage.setItem("calcThemeIndex", currentTheme)
 })
+
+const resultEl = document.querySelector(".calc__result")
+const buttons = document.querySelectorAll(".calc__keys button");
+let currentNumber = "";
+let expression = "";
+
+buttons.forEach((btn)=>{
+    btn.addEventListener("click",()=>{
+        const type = btn.dataset.type;
+        const value = btn.dataset.value;
+
+        if(type === "number") handleNumber(value)
+        if (type === "operation") handleOperation(value);
+        if (type === "action") handleAction(value);
+    })
+})
+
+function handleNumber(value){
+    if(value === "." && currentNumber.includes(".")) return;
+    currentNumber+= value;
+    updateDisplay(expression + currentNumber);
+}
+
+function handleOperation(value){
+    if(currentNumber === "" && expression === "") return;
+    expression += currentNumber+value;
+    currentNumber ="";
+    updateDisplay(expression);
+}
+
+function handleAction(value){
+    if(value === "del"){
+        currentNumber = currentNumber.slice(0,-1);
+        updateDisplay(expression + currentNumber || "0");
+    }
+    if(value  ==="reset"){
+        expression ="";
+        currentNumber="";
+        updateDisplay("0")
+    }
+
+    if(value === "="){
+        expression += currentNumber;
+        try{
+                const result = eval(expression);
+                updateDisplay(result)
+                expression = result.toString();
+                currentNumber="";
+        }catch{
+                updateDisplay("Error");
+                expression="";
+                currentNumber ="";
+        }
+    }
+}
+function updateDisplay(value) {
+    resultEl.textContent = value;
+  }
+  
