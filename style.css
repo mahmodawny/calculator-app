@@ -194,3 +194,47 @@ body.light .calc__title,body.light .calc__result,body.light .themes__lable {
     transform: scale(0.95);
     filter: brightness(1.2);
   }
+  .calc__display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: var(--screen-bg);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    min-height: 80px;
+    word-wrap: break-word;
+    text-align: right;
+  }
+  
+  .calc__expression {
+    align-self: flex-start;
+    color: hsl(221, 14%, 31%); /* رمادي غامق أنيق */
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-light);
+    opacity: 1; /* خليه واضح */
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+
+  }
+  
+  .calc__result {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--text-light);
+    text-align: right;
+    margin-top: 0.3rem;
+  }
+
+  .calc__expression,
+  .calc__result {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: font-size 0.2s ease;
+  }
+  
+  
