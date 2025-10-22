@@ -189,4 +189,8 @@ body.light .calc__title,body.light .calc__result,body.light .themes__lable {
     transform: translateX(40px);
     background-color: var(--key-red-bg);
   }
-  
+  /* ========== Keyboard Press Effect ========== */
+  .active-key{
+    transform: scale(0.95);
+    filter: brightness(1.2);
+  }

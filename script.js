@@ -73,4 +73,50 @@ function handleAction(value){
 function updateDisplay(value) {
     resultEl.textContent = value;
   }
-  
+  // ===== Keyboard Support =====
+document.addEventListener('keydown',(e)=>{
+    const key = e.key;
+    
+    if(!isNaN(key || key === ".")){
+        handleNumber(key)
+        simulateKeyPress(key)
+        return;
+    }
+    if(["+","-","*","/"].includes(key)){
+        e.preventDefault?.();
+        handleNumber(key)
+        simulateKeyPress(key)
+        return;
+    }
+    if (key === "Enter" || key === "=") {
+        e.preventDefault?.();
+        handleAction("=");
+        simulateKeyPress("=");
+        return;
+      }
+    
+      // Backspace => DEL
+      if (key === "Backspace" || key === "Delete") {
+        handleAction("del");
+        simulateKeyPress("del");
+      }
+      
+    
+      // Escape => RESET
+      if (key === "Escape") {
+        e.preventDefault?.();
+        handleAction("reset");
+        simulateKeyPress("reset");
+        return;
+      }
+})
+
+function simulateKeyPress(){
+    const button = [...button].find((btn)=>btn.dataset.value === value);
+    if(!buttons) return;
+    button.classList.add("active-key");
+    setTimeout(() => {
+            button.classList.remove("active-key");
+
+    }, 150);
+}
